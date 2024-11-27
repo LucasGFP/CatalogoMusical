@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adicionar Artista</title>
+</head>
+<body>
+  <h1>Adicionar Artista</h1>
+  <form action="/artistas/novo" method="POST">
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" name="nome" required>
+    <br>
+    <label for="generoMusical">Gênero Musical:</label>
+    <input type="text" id="generoMusical" name="generoMusical" required>
+    <br>
+    <button type="submit">Salvar</button>
+  </form>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resultado da Busca</title>
+</head>
+<body>
+  <h1>Resultado da Busca</h1>
+  <ul>
+    <% discos.forEach(disco => { %>
+      <li>
+        <h2><%= disco.titulo %> (<%= disco.anoLancamento %>)</h2>
+        <p>Artista: <%= disco.artista ? disco.artista.nome : 'Desconhecido' %></p>
+        <p>Gênero: <%= disco.artista ? disco.artista.generoMusical : 'Desconhecido' %></p>
+        <ul>
+          <% disco.faixas.forEach(faixa => { %>
+            <li><%= faixa.titulo %> - <%= faixa.duracao %></li>
+          <% }) %>
+        </ul>
+      </li>
+    <% }) %>
+  </ul>
+  <a href="/">Voltar</a>
+</body>
+</html>

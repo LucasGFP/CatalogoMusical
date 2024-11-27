@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Disco</title>
+</head>
+<body>
+  <h1>Editar Disco</h1>
+  <form action="/discos/editar/<%= disco.id %>" method="POST">
+    <label for="titulo">Título:</label>
+    <input type="text" id="titulo" name="titulo" value="<%= disco.titulo %>" required>
+    <br>
+    <label for="anoLancamento">Ano de Lançamento:</label>
+    <input type="number" id="anoLancamento" name="anoLancamento" value="<%= disco.anoLancamento %>" required>
+    <br>
+    <h3>Faixas</h3>
+    <div id="faixas-container">
+      <% disco.faixas.forEach((faixa, index) => { %>
+        <input type="text" name="faixas[<%= index %>][titulo]" value="<%= faixa.titulo %>" required>
+        <input type="text" name="faixas[<%= index %>][duracao]" value="<%= faixa.duracao %>">
+      <% }) %>
+    </div>
+    <button type="button" onclick="addFaixa()">Adicionar Faixa</button>
+    <br>
+    <button type="submit">Salvar</button>
+  </form>
+  <form action="/discos/remover/<%= disco.id %>" method="POST">
+    <button type="submit">Remover Disco</button>
+  </form>
+
+  <script>
+    let faixaIndex = <%= disco.faixas.length %>;
+    function addFaixa() {
+      const container = document.getElementById('faixas-container');
+      const novaFaixa = document.createElement('div');
+      novaFaixa.innerHTML = `
+        <input type="text" name="faixas[${faixaIndex}][titulo]" placeholder="Título da Faixa" required>
+        <input type="text" name="faixas[${faixaIndex}][duracao]" placeholder="Duração (Ex: 3:45)">
+      `;
+      container.appendChild(novaFaixa);
+      faixaIndex++;
+    }
+  </script>
+</body>
+</html>
